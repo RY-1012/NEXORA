@@ -1,0 +1,34 @@
+{
+  "name": "nexora-monorepo",
+  "version": "0.1.0",
+  "description": "Zero-cost, open-source social media platform",
+  "private": true,
+  "workspaces": [
+    "apps/*"
+  ],
+  "scripts": {
+    "install-all": "npm install && npm install --workspace=apps/api && npm install --workspace=apps/web",
+    "dev": "npm run --workspace=apps/api start:dev & npm run --workspace=apps/web start",
+    "build": "npm run build --workspace=apps/api && npm run build --workspace=apps/web",
+    "test": "npm run test --workspaces"
+  },
+  "keywords": [
+    "social-media",
+    "open-source",
+    "free",
+    "angular",
+    "nestjs"
+  ],
+  "devDependencies": {
+    "ajv": "8.12.0",
+    "ajv-keywords": "5.1.0"
+  },
+  "overrides": {
+    "rxjs": "7.8.2"
+  },
+  "author": "NEXORA Contributors",
+  "license": "MIT",
+  "dependencies": {
+    "enhanced-resolve": "^5.16.1"
+  }
+}

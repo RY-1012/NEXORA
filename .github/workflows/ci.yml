@@ -1,0 +1,50 @@
+name: CI
+
+on: [push, pull_request]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: nexora_test
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 5432:5432
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Lint
+        run: npm run lint --workspace=apps/api
+
+      - name: Test Backend
+        run: npm run test --workspace=apps/api
+        env:
+          DATABASE_URL: postgres://postgres:postgres@localhost:5432/nexora_test
+
+      - name: Build Backend
+        run: npm run build --workspace=apps/api
+
+      - name: Test Frontend
+        run: npm run test --workspace=apps/web
+
+      - name: Build Frontend
+        run: npm run build --workspace=apps/web
