@@ -2,13 +2,6 @@
 
 A free-only, open-source-first blueprint and partial implementation of a modern social media platform. Optimized for learning, portfolio showcases, final-year projects, and MVP demos. **Not for paid production without further hardening.**
 
-## 🎯 Key Principles
-
-✅ **100% Free & Open-Source** - No paid SDKs, no mandatory cloud costs, no lock-ins
-✅ **No Docker Required** - All services installed locally on your machine
-✅ **Database Agnostic** - Set up PostgreSQL/MySQL/MongoDB yourself, one by one
-✅ **Production-Ready Starter** - Real patterns, good architecture, scalable starting point
-✅ **Learning-Focused** - Well-documented, clean code, architectural decisions explained
 
 ## 🏗️ Tech Stack
 
